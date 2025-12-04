@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h1>Player data for {{ tag }}</h1>
+
+  {% if placeholder %}
+    <p>{{ placeholder }}</p>
+  {% endif %}
+
+  {% if trophies is not none %}
+    <h2>Trophies: {{ trophies }}</h2>
+  {% endif %}
+
+  {% if exp_level is not none %}
+    <h2>Experience level: {{ exp_level }}</h2>
+  {% endif %}
+
+  {% if cards is not none %}
+    <h2>Cards:</h2>
+    <pre>{{ cards | safe }}</pre>
+    {# later you can format cards nicely instead of dumping raw #}
+  {% endif %}
+{% endblock content %}

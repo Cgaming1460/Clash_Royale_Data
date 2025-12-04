@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Clash Royale player lookup</h1>
+
+<form method="POST" action="{{ url_for('submit') }}">
+    <label>
+        Player tag:
+        <input type="text" name="tag" placeholder="#20CJGYRJVL" required>
+    </label>
+    <br><br>
+
+    <p>What do you want to fetch?</p>
+
+    <label>
+        <input type="checkbox" name="fetch_trophies">
+        Player trophies
+    </label><br>
+
+    <label>
+        <input type="checkbox" name="fetch_exp_level">
+        Player's exp level
+    </label><br>
+
+    <label>
+        <input type="checkbox" name="fetch_cards">
+        Player's cards
+    </label><br><br>
+
+    <button type="submit">GO</button>
+</form>
+{% endblock content %}
+
