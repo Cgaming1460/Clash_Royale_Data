@@ -1,0 +1,26 @@
+
+<!-- 1. This is the homepage basically, yeah you can style this by
+        adding in divs or just using internal css like what I did 
+        with '<h1 style="text-align: center;>; -->
+
+{% extends "layout.html" %}
+{% block content %}
+
+<h1 style="text-align: center;">
+   Welcome to the Clash Royale Data Lookup!
+   Created by Chrishna (Backend) and Ekin (frontend).
+</h1>
+
+<p class="spaced">
+<a href="{{ url_for('player_data') }}">Click here for player data</a>
+</p>
+
+<p class="spaced">
+<a href="{{ url_for('clan_data') }}">Click here for clan data</a>
+</p>
+
+<p class="spaced">
+<a href="{{ url_for('game_data') }}">Click here for game data</a>
+</p>
+{% endblock %}
+

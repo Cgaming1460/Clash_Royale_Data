@@ -1,24 +1,14 @@
-# Python
+# Python cache
 __pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-*.log
+*.pyc
 
 # Virtual environments
 venv/
-.env/
-.venv/
 
-# Flask / instance stuff
-instance/
-*.sqlite3
+# Clash Royale cache
+clash_cache.db
 
-# VS Code / IDE stuff (if any)
-.vscode/
-.idea/
-*.swp
+# Secrets
+API_KEY.txt
 
-# OS files
-.DS_Store
-Thumbs.db
+

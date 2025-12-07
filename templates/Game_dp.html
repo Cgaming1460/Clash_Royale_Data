@@ -1,0 +1,91 @@
+<!-- 1. This is another 'brick' in the wall of the html page,
+        this is a different section of the website that shows
+        the user the actual data, that's why there isn't 
+         <form> and <button> tags but only <h1> headers and
+         <p> paragraph tags, again you see {extends} and {block} -->
+
+<!-- 2 . This is what is shown on the data page, after the data is 
+     confirmed and retrieved, look into the styles.css file and
+     try to relate it to the divs, use my existing code as reference
+     and minimal help - as in from ai, to understand concepts since
+     you haven't perfected python, goodluck!-->
+{% extends "layout.html" %}
+
+{% block content %}
+  <h1>Overall game data</h1>
+
+  {% if placeholder %}
+    <p>{{ placeholder }}</p>
+  {% endif %}
+
+  {% if all_cards is not none %}
+    
+    <h1>All cards in the game:</h1>
+    <style>
+    /* light, simple styling just for readability */
+    .card-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .card-card {
+      width: 140px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .card-card img {
+      width: 80px;
+      height: 80px;
+      display: block;
+      margin: 0 auto 6px auto;
+    }
+    .card-name {
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+   
+    </style>
+  
+    <div class="card-grid">
+      {% for card in all_cards %}
+        <div class="card-card">
+          <img src="{{ card.icon_Urls.medium }}"
+               alt="{{ card.name }} card">
+
+          <div class="card-name">
+            {{ card.name }}
+          </div>
+
+        </div>
+      {% endfor %}
+    </div>  
+     
+  {% endif %}
+
+  {% if top_players is not none %}
+    {% for player in top_players%}
+      <h2>Player: {{ player.name }}</h2>
+      <h2>Player rank: {{ player.rank }}</h2>
+      <h2>Player trophies: {{ player.trophies }}</h2>
+      {% if player.clan %}
+        <h2>Player's clan: {{ player.clan.name }}</h2>
+      {% else %}
+        <h2>Player's clan: No clan</h2>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% if top_clans is not none %}
+    {% for clan in top_clans %}
+      <h2>Clan name: {{ clan.name }}</h2>
+      <h2>Clan tag: {{ clan.tag }}</h2>
+      <h2>Clan rank: {{ clan.rank }}</h2>
+      <h2>Previous rank: {{ clan.previousRank }}</h2>
+      <h2>Location: {{ clan.location.name }}</h2>
+      <h2>Member: {{ clan.members }}</h2>
+      <h2>Badge id: {{ clan.badgeId }}</h2>
+      <h2>Clan score: {{ clan.clan_score}}</h2>
+      <br>
+    {% endfor %}
+  {% endif %}
+{% endblock content %}

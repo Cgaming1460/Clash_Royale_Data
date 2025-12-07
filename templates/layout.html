@@ -1,6 +1,13 @@
+<!-- 1. This is very bare because it's the foundation of the website
+        you should recognise the {block content}, think of this like
+        algebra where each page is SUBSTITUTED into that block content
+        section when their section of the website is accessed.-->
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- 2. Importantly, this is the css file linked, yeah be careful
+            with using the same class name -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <title>Clash Royale data</title>
 </head>
 <body>

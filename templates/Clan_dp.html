@@ -1,0 +1,39 @@
+<!-- 1. This is another 'brick' in the wall of the html page,
+        this is a different section of the website that shows
+        the user the actual data, that's why there isn't 
+         <form> and <button> tags but only <h1> headers and
+         <p> paragraph tags, again you see {extends} and {block} -->
+
+<!-- 2. This is what is shown on the data page, after the data is 
+     confirmed and retrieved, look into the styles.css file and
+     try to relate it to the divs, use my existing code as reference
+     and minimal help - as in from ai, to understand concepts since
+     you haven't perfected python, goodluck!-->
+
+{% extends "layout.html" %}
+
+{% block content %}
+  <h1>Clan data for {{ clan_tag }}</h1>
+
+  {% if placeholder %}
+    <p>{{ placeholder }}</p>
+  {% endif %}
+
+  {% if clan_name is not none %}
+    <h2>Clan name: {{ clan_name }}</h2>
+  {% endif %}
+
+  {% if clan_score is not none %}
+    <h2>Clan score: {{ clan_score }}</h2>
+  {% endif %}
+
+  {% if clan_member_data is not none %}
+    {% for member in clan_member_data %}
+    <h2>Member name: {{ member.name }}</h2>
+    <h2>Member tag: {{ member.tag }}</h2>
+    <h2>Member trophies: {{ member.trophies }}</h2>
+    <h2>Member role: {{ member.role }}</h2>
+    <br>
+    {% endfor %}
+  {% endif %}
+{% endblock content %}

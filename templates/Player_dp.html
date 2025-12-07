@@ -1,0 +1,223 @@
+
+<!-- 1. This is what is shown on the data page, after the data is 
+     confirmed and retrieved, look into the styles.css file and
+     try to relate it to the divs, use my existing code as reference
+     and minimal help - as in from ai, to understand concepts since
+     you haven't perfected python, goodluck!-->
+
+{% extends "layout.html" %}
+
+{% block content %}
+  <h1>Player data for {{ tag }}</h1>
+
+  {% if placeholder %}
+    <p>{{ placeholder }}</p>
+  {% endif %}
+
+  {% if trophies is not none %}
+    <h2>Trophies: {{ trophies }}</h2>
+  {% endif %}
+  
+  {# ---------------- Badges ---------------- #}
+  {% if badges is not none %}
+    <h2>Badges:</h2>
+
+    <div class="grid">
+      {% for badge in badges %}
+        <div class="card">
+          <img src="{{ badge.icon_urls.large }}"
+               alt="{{ badge.name }} badge">
+
+          <div class="name">
+            {{ badge.name|replace('Mastery', 'Mastery: ') }}
+          </div>
+
+          <div class="level">
+            Level {{ badge.level }} / {{ badge.max_level }}
+          </div>
+
+          <div class="progress">
+            Progress: {{ badge.progress }} / {{ badge.target }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if league_statistics is not none %}
+    <h2>League statistics: {{ league_statistics }}</h2>
+  {% endif %}
+  
+  {% if exp_level is not none %}
+    <h2>Experience level: {{ exp_level }}</h2>
+  {% endif %}
+
+  {% if arena_id is not none %}
+    <h2>Arena id: {{ arena_id }}</h2>
+  {% endif %}
+  
+  {% if arena_name is not none %}
+    <h2>Arena name: {{ arena_name }}</h2>
+  {% endif %}
+  
+
+  {# ---------------- Current deck ---------------- #}
+  {% if current_deck is not none %}
+    <h2>Current deck:</h2>
+
+    <div class="grid">
+      {% for card in current_deck %}
+        <div class="card">
+          <img src="{{ card.icon_urls.medium }}"
+               alt="{{ card.name }} image">
+
+          <div class="name">
+            {{ card.name }}
+          </div>
+
+          <div class="id">
+            Card ID: {{ card.id }}
+          </div>
+
+          <div class="level">
+            Level: {{ card.level }}
+          </div>
+
+          <div class="max_level">
+            Max level: {{ card.max_level }}
+          </div>
+
+          <div class="max_evolution_level">
+            Max evolution level: {{ card.max_evolution_level }}
+          </div>
+
+          <div class="rarity">
+            Rarity: {{ card.rarity }}
+          </div>
+
+          <div class="amount_owned">
+            Amount owned: {{ card.count }}
+          </div>
+
+          <div class="elixir_cost">
+            Elixir cost: {{ card.elixir_cost }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+
+  {# ---------------- Full card collection ---------------- #}
+  {% if cards is not none %}
+    <h2>All cards in this account:</h2>
+    <p>Debug: number of cards = {{ cards|length }}</p>
+
+    {# Build a list of deck card IDs so we can skip them here #}
+    {% set deck_ids = [] %}
+    {% if current_deck is not none %}
+      {% set deck_ids = current_deck | map(attribute='id') | list %}
+    {% endif %}
+
+    <div class="grid">
+      {% for card in cards %}
+        {% if card.id not in deck_ids %}
+          <div class="card">
+            <img src="{{ card.icon_urls.medium }}"
+                 alt="{{ card.name }} image">
+
+            <div class="name">
+              {{ card.name }}
+            </div>
+
+            <div class="id">
+              Card ID: {{ card.id }}
+            </div>
+
+            <div class="level">
+              Level: {{ card.level }}
+            </div>
+
+            <div class="max_level">
+              Max level: {{ card.max_level }}
+            </div>
+
+            <div class="max_evolution_level">
+              Max evolution level: {{ card.max_evolution_level }}
+            </div>
+
+            <div class="rarity">
+              Rarity: {{ card.rarity }}
+            </div>
+
+            <div class="amount_owned">
+              Amount owned: {{ card.count }}
+            </div>
+
+            <div class="elixir_cost">
+              Elixir cost: {{ card.elixir_cost }}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+
+  {# ---------------- Battles ---------------- #}
+  {% if battle_data is not none %}
+    <h2>Recent battles:</h2>
+
+    {# Decide which slice to show #}
+    {% if battle_limit %}
+      {% set battles_to_show = battle_data[:battle_limit] %}
+    {% else %}
+      {% set battles_to_show = battle_data %}
+    {% endif %}
+
+    <div class="grid">
+      {% for battle in battles_to_show %}
+        <div class="card">
+          <div class="name">
+            Battle {{ loop.index }}
+          </div>
+
+          <div class="level">
+            Arena: {{ battle.arena.name }} (ID: {{ battle.arena.id }})
+          </div>
+
+          <div class="rarity">
+            Type: {{ battle.type }}
+          </div>
+
+          <div class="id">
+            Gamemode: {{ battle.game_mode.name }}
+          </div>
+
+          <div class="progress">
+            Battle time: {{ battle.battle_time }}
+          </div>
+
+          <div class="amount_owned">
+            Team crowns:
+            {% if battle.team and battle.team[0] %}
+              {{ battle.team[0].crowns }}
+            {% else %}
+              N/A
+            {% endif %}
+          </div>
+
+          <div class="elixir_cost">
+            Opponent crowns:
+            {% if battle.opponent and battle.opponent[0] %}
+              {{ battle.opponent[0].crowns }}
+            {% else %}
+              N/A
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+{% endblock content %}

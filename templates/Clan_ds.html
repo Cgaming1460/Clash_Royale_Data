@@ -1,0 +1,39 @@
+<!-- 1. This is what's shown on the main page, the tickboxes,
+        this actually isn't a full html page, this is supposed to
+        be inserted into 'layout.html', thats why it starts with
+        {extends}, and below that is {block content}, as in
+        this is a brick in the wall of the html, it can be put into
+        the gap or taken out. --> 
+{% extends "layout.html" %}
+{% block content %}         
+<h1>Clash Royale clan data lookup</h1>
+
+<form method="POST" action="{{ url_for('clan_data') }}">
+    <label>
+        Clan tag:
+        <input type="text" name="clan_tag" placeholder="" required>
+    </label>
+    <br><br>
+
+    <p>What do you want to fetch?</p>
+
+    <label>
+        <input type="checkbox" name="fetch_clan_name">
+        Clan's name
+    </label><br>
+
+    <label>
+        <input type="checkbox" name="fetch_clan_score">
+        Clan's score
+    </label><br>
+
+    <label>
+        <input type="checkbox" name="fetch_clan_member_data">
+        Clan member data
+    </label><br><br>
+
+    
+    <button type="submit">GO</button>
+</form>
+{% endblock content %}
+

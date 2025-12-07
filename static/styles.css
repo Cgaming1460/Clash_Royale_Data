@@ -1,0 +1,55 @@
+
+/* This is the style sheets, basically you can add in classes
+   or ids to divs (make sure you understand divs) yeah, goodluck  */
+
+.form-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.form-box {
+    border: 1px solid #ccc;
+    padding: 15px;
+    width: 230px;
+    border-radius: 8px;
+    background: #f7f7f7;
+}
+
+.spaced {
+    margin-bottom: 20px;
+}
+
+/* light, simple styling just for readability */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.card {
+  width: 140px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.card img {
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin: 0 auto 6px auto;
+}
+.name {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+.level,
+.progress
+.id
+.max_level
+.max_evolution_level
+.rarity
+.amount_owned
+.elixir_cost {
+  margin: 2px 0;
+}
+

@@ -1,0 +1,73 @@
+<!-- 1. This is what's shown on the main page, the tickboxes,
+        this actually isn't a full html page, this is supposed to
+        be inserted into 'layout.html', thats why it starts with
+        {extends}, and below that is {block content}, as in
+        this is a brick in the wall of the html, it can be put into
+        the gap or taken out. --> 
+{% extends "layout.html" %}
+{% block content %}         
+<h1>Clash Royale player lookup</h1>
+
+<form method="POST" action="{{ url_for('player_data') }}">
+    <label>
+        Player tag:
+        <input type="text" name="tag" placeholder="#20CJGYRJVL" required>
+    </label>
+    <br><br>
+
+    <p>What do you want to fetch?</p>
+
+    <label>
+        <input type="checkbox" name="fetch_trophies">
+        Player trophies
+    </label><br>
+
+    <label>
+        <input type="checkbox" name="fetch_exp_level">
+        Player's exp level
+    </label><br>
+
+    <label>
+        <input type="checkbox" name="fetch_cards">
+        Player's cards
+    </label><br><br>
+    
+    <label>
+        <input type="checkbox" name="fetch_arena_name">
+        Player's current arena
+    </label><br><br>
+    
+    <label>
+        <input type="checkbox" name="fetch_arena_id">
+        Player's arena's id
+    </label><br><br>
+    
+    <label>
+        <input type="checkbox" name="fetch_current_deck">
+        Player's current deck
+    </label><br><br>
+    
+    <label>
+        <input type="checkbox" name="fetch_badges">
+        Player's current badges
+    </label><br><br>
+    
+    <label>
+        <input type="checkbox" name="fetch_league_statistics">
+        Player's league statistics
+    </label><br><br>
+    
+    <label>
+        <input type="checkbox" name="fetch_battle_data">
+        Player's battle data
+    </label><br><br>
+    
+    <label>
+        <input type="text" name="fetch_battle_limit">
+        How many battles do you want to retrieve (up to 30)?
+    </label><br><br>
+
+    
+    <button type="submit">GO</button>
+</form>
+{% endblock content %}
